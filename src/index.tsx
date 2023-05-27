@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, BrowserRouter, Router } from "reac
 import { GlobalStyles } from './styles/GlobalStyles';
 
 import { Register } from './pages/Register.tsx/Register';
+import { RequestStatus } from './components/RequestStatus/RequestStatus';
 
 import { ContextProvider } from './context';
 
@@ -23,6 +24,7 @@ root.render(
     <ContextProvider>
       <RouterProvider router={router}/>
       <GlobalStyles/>
+      <RequestStatus/>
     </ContextProvider>
   </React.StrictMode>
 );
