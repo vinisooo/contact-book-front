@@ -6,6 +6,7 @@ import { GlobalStyles } from './styles/GlobalStyles';
 
 import { Register } from './pages/Register.tsx/Register';
 
+import { ContextProvider } from './context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,8 +21,10 @@ const router = createBrowserRouter([
 
 root.render(
   <React.StrictMode>
-    <GlobalStyles/>
-    <RouterProvider router={router}/>
-    <App />
+    <ContextProvider>
+      <RouterProvider router={router}/>
+      <GlobalStyles/>
+      <App />
+    </ContextProvider>
   </React.StrictMode>
 );
