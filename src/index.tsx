@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, BrowserRouter, Router } from "react-router-dom";
 import { GlobalStyles } from './styles/GlobalStyles';
 
 import { Register } from './pages/Register.tsx/Register';
@@ -24,7 +23,6 @@ root.render(
     <ContextProvider>
       <RouterProvider router={router}/>
       <GlobalStyles/>
-      <App />
     </ContextProvider>
   </React.StrictMode>
 );
