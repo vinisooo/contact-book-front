@@ -12,9 +12,12 @@ export const GlobalStyles = createGlobalStyle`
 
     :root {
         --total-white : #FFFFFF;
+        
         --color-grey-1: #90a4ae;
         --color-grey-2: #455A64;
         --color-grey-3: #263238;
+
+        --color-red: #FF4A4A;
     }
 
     button{
