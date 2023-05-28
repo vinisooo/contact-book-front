@@ -4,7 +4,7 @@ import { iContactContextProps } from "./interfaces";
 
 import {useState} from "react";
 import { api } from "../../services/api";
-import { iContact, iContactReq } from "../../interfaces/contact.interfaces";
+import { iContact, iContactReq, iContactUpdate } from "../../interfaces/contact.interfaces";
 
 const ContactContext = createContext({} as iContactContextProps);
 
@@ -80,9 +80,25 @@ const ContactProvider = ({children}: iContactProviderProps) => {
       console.log(err);
     }
   }
+
+  const updateContact = async(data: iContactUpdate) => {
+    try{
+      const request = await api.patch(`/contacts/${editContactId}`,data, {
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      getContacts();
+      setEditContactId(null)
+      setEditContactModal(false);
+    }catch(err){
+      console.log(err);
+    }
+  }
   
   return(
-      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts, setContacts, deleteContact, editContactModal, setEditContactModal, editContactId, setEditContactId}}>
+      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts, setContacts, deleteContact, editContactModal, setEditContactModal, editContactId, setEditContactId, updateContact}}>
           {children}
       </ContactContext.Provider>
   )

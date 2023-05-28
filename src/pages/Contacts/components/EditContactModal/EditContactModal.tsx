@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { contactUpdateSerializer } from "../../../../serializers/contact.serializer";
 
 export const EditContactModal = () => {
-    const {editContactModal, setEditContactModal, handlePhoneNumberChange, phoneNumber} = useContext(ContactContext);
+    const {editContactModal, setEditContactModal, handlePhoneNumberChange, phoneNumber, updateContact} = useContext(ContactContext);
 
     const {register, handleSubmit, formState:{errors}, reset} = useForm({
         resolver: zodResolver(contactUpdateSerializer),
@@ -18,7 +18,7 @@ export const EditContactModal = () => {
     });
 
     const onSubmit = (data: any) => {
-        console.log(data);
+        updateContact(data);
     }
 
     if(!editContactModal){
@@ -26,10 +26,10 @@ export const EditContactModal = () => {
     }
     return(
         <Modal title="Editar contato">
-            <form>
-                <InputField errors={errors.name?.message} register={register("name")} placeholder="nome"/>
-                <InputField errors={errors.email?.message} register={register("email")} placeholder="email"/>
-                <InputField errors={errors.phone?.message} maxLength={16} value={phoneNumber} onChange={handlePhoneNumberChange} register={register("phone")} placeholder="telefone"/>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <InputField required={false} errors={errors.name?.message} register={register("name")} placeholder="nome"/>
+                <InputField required={false} errors={errors.email?.message} register={register("email")} placeholder="email"/>
+                <InputField required={false} errors={errors.phone?.message} maxLength={16} value={phoneNumber} onChange={handlePhoneNumberChange} register={register("phone")} placeholder="telefone"/>
                 <StyledButton type="submit">Editar</StyledButton>
             </form>
         </Modal>   
