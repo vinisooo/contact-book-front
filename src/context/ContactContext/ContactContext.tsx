@@ -4,7 +4,7 @@ import { iContactContextProps } from "./interfaces";
 
 import {useState} from "react";
 import { api } from "../../services/api";
-import { iContact } from "../../interfaces/contact.interfaces";
+import { iContact, iContactReq } from "../../interfaces/contact.interfaces";
 
 const ContactContext = createContext({} as iContactContextProps);
 
@@ -47,10 +47,24 @@ const ContactProvider = ({children}: iContactProviderProps) => {
 
   useEffect(() => {
     getContacts();
-  },[])
+  },[]);
+
+  const createContact = async(data: iContactReq) => {
+    try{
+      const request = await api.post("/contacts", data, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      console.log(request)
+    }catch(err){
+      console.log(err);
+    }
+  }
   
   return(
-      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange}}>
+      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact}}>
           {children}
       </ContactContext.Provider>
   )

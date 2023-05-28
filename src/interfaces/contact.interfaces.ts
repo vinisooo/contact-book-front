@@ -1,6 +1,7 @@
 import { z } from "zod";
-import { contactSerializer } from "../serializers/contact.serializer";
+import { contactReqSerializer, contactSerializer } from "../serializers/contact.serializer";
 
 type iContact = z.infer<typeof contactSerializer>;
+type iContactReq = z.infer<typeof contactReqSerializer>
 
-export type { iContact }
+export type { iContact, iContactReq }

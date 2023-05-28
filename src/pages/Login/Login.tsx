@@ -21,7 +21,6 @@ export const Login = () => {
     });
 
     const onSubmit = (data: any) => {
-        console.log(data);
         login(data);
     }
 
