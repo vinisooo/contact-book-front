@@ -16,12 +16,14 @@ import { Link } from "react-router-dom";
 export const Login = () => {
     const { login } = useContext(AuthContext);
 
-    const {register, handleSubmit, formState:{errors}} = useForm({
-        resolver: zodResolver(userLoginSerializer)
+    const {register, handleSubmit, formState:{errors}, reset} = useForm({
+        resolver: zodResolver(userLoginSerializer),
+        mode: "all"
     });
 
     const onSubmit = (data: any) => {
         login(data);
+        reset();
     }
 
     return(

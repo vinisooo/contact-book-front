@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 
 import { ContactContext } from "../../../../context/ContactContext/ContactContext";
 import { AuthContext } from "../../../../context/AuthContext/AuthContext";
+import { UserContext } from "../../../../context/UserContext/UserContext";
 
 export const Header = () => {
     const {user} = useContext(AuthContext);
     const [displayPopupMenu, setDisplayPopupMenu] = useState<boolean>(false);
     const [deleteCounter, setDeleteCounter] = useState<number>(1);
 
+    const {deleteUser} = useContext(UserContext);
     const {setUser} = useContext(AuthContext);
     const {setContacts} = useContext(ContactContext);
 
@@ -38,6 +40,9 @@ export const Header = () => {
     const handleDeleteContact=() => {
         if(deleteCounter == 1){
             setDeleteCounter(deleteCounter + 1);
+        }else{
+            setUser(null);
+            deleteUser();
         }
     }
 
@@ -63,7 +68,7 @@ export const Header = () => {
                     <PopupMenu  display={displayPopupMenu}>
                         <button>Editar</button>
                         <button onClick={logOut} className="red">Sair</button>
-                        <button className={deleteCounter == 2? "red-delete": "red"}>Excluir conta</button>
+                        <button onClick={handleDeleteContact} className={deleteCounter == 2? "red-delete": "red"}>{ deleteCounter === 2 ? "Confirmar" : "Excluir Conta"}</button>
                     </PopupMenu>
                 </div>
             </div>

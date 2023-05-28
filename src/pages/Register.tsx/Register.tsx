@@ -16,13 +16,14 @@ export const Register = () => {
     const { phoneNumber, handlePhoneNumberChange } = useContext(ContactContext);
     const { registerUser } = useContext(UserContext);
 
-    const {register, handleSubmit, formState:{errors}} = useForm({
-        resolver: zodResolver(userReqSerializer)
+    const {register, handleSubmit, formState:{errors}, reset} = useForm({
+        resolver: zodResolver(userReqSerializer),
+        mode: "all"
     });
 
     const onSubmit = (data: any) => {
-        console.log(data);
         registerUser(data);
+        reset();
     }
 
     return(

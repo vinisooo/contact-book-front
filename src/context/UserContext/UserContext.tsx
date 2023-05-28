@@ -17,6 +17,9 @@ const UserProvider = ({children}: iUserProviderProps) => {
     
     const navigate = useNavigate();
 
+    const token = localStorage.getItem("@contact-book: accessToken");
+    const userId = localStorage.getItem("@contact-book: userId");
+
     const disableStatus = () => {
         setIsLoading(false);
         setTimeout(() => {
@@ -30,6 +33,8 @@ const UserProvider = ({children}: iUserProviderProps) => {
             const request = await api.post("/users/register", data);
             setIsLoading(false);
             setStatus("success");
+
+            navigate("/login");
         }catch(err: any){
             console.log(err);
             if(err.response.detail === "Email already exists"){
@@ -41,8 +46,23 @@ const UserProvider = ({children}: iUserProviderProps) => {
         }
     }
 
+    const deleteUser = async() => {
+        try{
+            const request = await api.delete(`/users/${Number(userId)}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            navigate("/login");
+            localStorage.removeItem("@contact-book: accessToken");
+            localStorage.removeItem("@contact-book: userId");
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     return(
-        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage, disableStatus}}>
+        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage, disableStatus, deleteUser}}>
             {children}
         </UserContext.Provider>
     )
