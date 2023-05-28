@@ -5,7 +5,7 @@ import {useContext} from "react";
 import { AuthContext } from "../../../../context/AuthContext/AuthContext";
 import { PopupMenu } from "../../../../components/PopupMenu/PopupMenu";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 export const Header = () => {
     const {user} = useContext(AuthContext);

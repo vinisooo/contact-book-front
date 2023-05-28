@@ -3,7 +3,7 @@ import { InputField } from "../../components/InputField/InputField";
 import { StyledButton } from "../../styles/Button";
 
 import { useForm } from "react-hook-form";
-import { userLoginSerializer, userReqSerializer } from "../../serializers/user.serializer";
+import { userLoginSerializer } from "../../serializers/user.serializer";
 
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext/UserContext";
@@ -12,7 +12,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Link } from "react-router-dom";
 
-import { redirect } from "react-router-dom";
 
 export const Login = () => {
     const { login } = useContext(UserContext);

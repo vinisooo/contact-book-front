@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { iUserProviderProps } from "./interfaces";
 import { iUserContextProps } from "./interfaces";
-import { iUser, iUserReq } from "../../interfaces/user.interfaces";
+import { iUserReq } from "../../interfaces/user.interfaces";
 
 import { api } from "../../services/api";
 import {useState} from "react";
