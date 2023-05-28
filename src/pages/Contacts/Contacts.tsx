@@ -1,6 +1,11 @@
+import { Header } from "./components/Header/Header";
+import { StyledContainer } from "../../styles/Container";
 
 export const Contacts = () => {
     return(
-        <h1>contatos</h1>
+        <>
+            <Header/>
+            <StyledContainer/>
+        </>
     )
 }
