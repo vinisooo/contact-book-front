@@ -1,17 +1,55 @@
 import { StyledHeader } from "./styled";
 import { UserIcon } from "../../../../components/UserIcon/UserIcon";
 
-import {useContext} from "react";
-import { AuthContext } from "../../../../context/AuthContext/AuthContext";
 import { PopupMenu } from "../../../../components/PopupMenu/PopupMenu";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { ContactContext } from "../../../../context/ContactContext/ContactContext";
+import { AuthContext } from "../../../../context/AuthContext/AuthContext";
 
 export const Header = () => {
     const {user} = useContext(AuthContext);
-    const [displayPopup, setDisplayPopup] = useState<boolean>(false);
+    const [displayPopupMenu, setDisplayPopupMenu] = useState<boolean>(false);
+    const [deleteCounter, setDeleteCounter] = useState<number>(1);
+
+    const {setUser} = useContext(AuthContext);
+    const {setContacts} = useContext(ContactContext);
+
+    const popupMenuRef = useRef<HTMLDivElement>(null);
     
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (popupMenuRef.current && !popupMenuRef.current.contains(event.target as Node)) {
+                setDisplayPopupMenu(false);
+                setDeleteCounter(1);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
     
+    const handleDeleteContact=() => {
+        if(deleteCounter == 1){
+            setDeleteCounter(deleteCounter + 1);
+        }
+    }
+
+    const logOut = () => {
+        localStorage.removeItem("@contact-book: accessToken");
+        localStorage.removeItem("@contact-book: userId");
+
+        navigate("/login");
+        setUser(null);
+        setContacts([]);
+    }
+
     return(
         <StyledHeader>
             <div>
@@ -20,12 +58,12 @@ export const Header = () => {
                     <h2>{user?.name}</h2>
                 </div>
 
-                <div className="popup-menu">
-                    <button onClick={() => setDisplayPopup(!displayPopup)}>...</button>
-                    <PopupMenu display={displayPopup}>
+                <div ref={popupMenuRef} className="popup-menu">
+                    <button onClick={() => setDisplayPopupMenu(!displayPopupMenu)}>...</button>
+                    <PopupMenu  display={displayPopupMenu}>
                         <button>Editar</button>
-                        <button className="red">Sair</button>
-                        <button className="red">Excluir conta</button>
+                        <button onClick={logOut} className="red">Sair</button>
+                        <button className={deleteCounter == 2? "red-delete": "red"}>Excluir conta</button>
                     </PopupMenu>
                 </div>
             </div>

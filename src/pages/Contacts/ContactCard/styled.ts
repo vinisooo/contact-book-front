@@ -45,14 +45,23 @@ export const StyledContactCard = styled.li`
             max-width: 70%;
         }
         
-        button{
-
-            font-size: 24px;
-            font-weight: 700;
-
-            color: var(--color-grey-1);
+        .popup-menu{
+            position: relative;
+            >button{
+                font-size: 24px;
+                font-weight: 700;
+    
+                color: var(--color-grey-1);
+            }
+            
+            div{
+                position: absolute;
+                bottom: -90px;
+                right: -55px;
+            }
         }
     }
+
 
     .contact-info{
         display: flex;

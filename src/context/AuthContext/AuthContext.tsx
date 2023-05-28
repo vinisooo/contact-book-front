@@ -4,7 +4,7 @@ import { iAuthContextProps, iAuthProviderProps } from "./interfaces";
 import { api } from "../../services/api";
 
 import { useContext } from "react";
-import { UserContext } from "../UserContext/UserContext";
+import { ContactContext } from "../ContactContext/ContactContext";
 import {useState} from "react";
 
 import {useEffect} from "react";
@@ -16,6 +16,8 @@ const AuthContext = createContext({} as iAuthContextProps)
 
 const AuthProvider = ({children}: iAuthProviderProps) => {
     const [user, setUser] = useState<iUser | null>(null);
+
+    const {setContacts} = useContext(ContactContext);
 
     const userId = localStorage.getItem("@contact-book: userId");
     const token = localStorage.getItem("@contact-book: accessToken");
@@ -31,7 +33,8 @@ const AuthProvider = ({children}: iAuthProviderProps) => {
             })
 
             setUser(request.data);
-
+            setContacts(request.data.contacts);
+            
             navigate("/contacts");
 
         }catch(err){

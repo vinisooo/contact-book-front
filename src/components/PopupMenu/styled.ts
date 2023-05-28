@@ -18,7 +18,7 @@ export const StyledPopupMenu = styled.div`
     position: relative;
     z-index: 4;
 
-    animation: displayPopup 0.3s ease-in;
+    animation: displayPopup 0.2s ease-in;
 
     ::before{
         content:"";
@@ -49,7 +49,7 @@ export const StyledPopupMenu = styled.div`
         color: var(--color-grey-1);
         background-color: transparent;
 
-        transition: 0.3s ease;
+        transition: 0.2s ease;
 
         font-weight: 500;
         font-size: 12px;
@@ -57,13 +57,18 @@ export const StyledPopupMenu = styled.div`
         cursor: pointer;
 
         :hover{
-            color: var(--color-grey-3);
-            background-color: var(--color-grey-1);
+            color: var(--total-white);
+            filter: brightness(0.9);
         }
 
-        .red{
-            color: var(--color-red);
-        }
+    }
+    .red{
+        color: var(--color-red);
+    }
+
+    .red-delete{
+        color: var(--color-grey-3);
+        background-color: var(--color-red);
     }
 
     @keyframes displayPopup {

@@ -64,7 +64,7 @@ const ContactProvider = ({children}: iContactProviderProps) => {
   }
   
   return(
-      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts}}>
+      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts, setContacts}}>
           {children}
       </ContactContext.Provider>
   )
