@@ -8,7 +8,7 @@ export const UserIcon = ({initialLetter}: iUserIconProps) => {
 
     return(
         <StyledUserIcon>
-            <span>{initialLetter || "C"}</span>
+            <span>{initialLetter?.toUpperCase() || "C"}</span>
         </StyledUserIcon>
     )
 }

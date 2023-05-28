@@ -1,4 +1,4 @@
-import { iUserLogin, iUserReq } from "../../interfaces/user.interfaces"
+import { iUser, iUserLogin, iUserReq } from "../../interfaces/user.interfaces"
 
 interface iUserContextProps {
     registerUser: (data: iUserReq) => void;

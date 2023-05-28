@@ -1,14 +1,15 @@
 import { createContext } from "react";
 import { iUserProviderProps } from "./interfaces";
 import { iUserContextProps } from "./interfaces";
-import { iUserReq } from "../../interfaces/user.interfaces";
-
+import { iUser, iUserReq } from "../../interfaces/user.interfaces";
 
 import { api } from "../../services/api";
 import {useState} from "react";
 
 import { iUserLogin } from "../../interfaces/user.interfaces";
 import { useNavigate } from "react-router-dom";
+
+import jwtDecode from "jwt-decode";
 
 const UserContext = createContext({} as iUserContextProps)
 
@@ -18,6 +19,8 @@ const UserProvider = ({children}: iUserProviderProps) => {
     const [errorMessage, setErrorMessage] = useState<string>("");
 
     const navigate = useNavigate();
+
+    const { default: jwt_decode } = require("jwt-decode");
 
     const disableStatus = () => {
         setIsLoading(false);
@@ -51,8 +54,12 @@ const UserProvider = ({children}: iUserProviderProps) => {
             setStatus("success");
 
             localStorage.setItem("@contact-book: accessToken", request.data.accessToken);
+            
+            const decodedJwt: any = jwtDecode(request.data.accessToken);
 
-            navigate("/contacts")
+            localStorage.setItem("@contact-book: userId", decodedJwt.sub);
+
+            navigate("/contacts");
         }catch(err: unknown){
             console.log(err);
             setStatus("error");
