@@ -24,7 +24,7 @@ export const ContactCard = ({contact}: iContactCardProps) => {
     const [displayPopupMenu, setDisplayPopupMenu] = useState<boolean>(false);
     const [deleteCounter, setDeleteCounter] = useState<number>(1);
 
-    const {deleteContact} = useContext(ContactContext);
+    const {deleteContact, setEditContactModal, setEditContactId} = useContext(ContactContext);
 
     const popupMenuRef = useRef<HTMLDivElement>(null);
 
@@ -50,6 +50,11 @@ export const ContactCard = ({contact}: iContactCardProps) => {
         };
     }, []);
 
+    const editContactEnableModal = () => {
+        setEditContactModal(true);
+        setEditContactId(contact.id);
+    }
+
 
     const handleDeleteContact=() => {
         if(deleteCounter == 1){
@@ -69,7 +74,7 @@ export const ContactCard = ({contact}: iContactCardProps) => {
                 <div className="popup-menu" ref={popupMenuRef}>
                     <button onClick={() => setDisplayPopupMenu(!displayPopupMenu)}>...</button>
                     <PopupMenu userId={contact.id} display={displayPopupMenu}>
-                        <button>Editar</button>
+                        <button onClick={editContactEnableModal}>Editar</button>
                         <button onClick={handleDeleteContact} className={deleteCounter == 2? "red-delete": "red"}>{ deleteCounter === 2 ? "Confirmar" : "Excluir"}</button>
                     </PopupMenu>
                 </div>

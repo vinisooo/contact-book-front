@@ -21,7 +21,7 @@ const userReqSerializer = userSerializer.omit({ id: true, createdAt: true, conta
     });
 
 
-const userLoginSerializer = userSerializer.omit({ id: true, createdAt: true, contacts: true, name: true, phone: true, });
+const userLoginSerializer = userSerializer.omit({ id: true, createdAt: true, contacts: true, name: true, phone: true, password: true}).extend({password: z.string()});
 
 const userUpdateSerializer = userSerializer.omit({id: true, createdAt: true, contacts: true}).partial();
 

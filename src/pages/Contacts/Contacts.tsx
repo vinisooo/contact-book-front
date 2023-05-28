@@ -8,11 +8,26 @@ import { ContactCard } from "./ContactCard/ContactCard";
 import { useContext } from "react";
 import { ContactContext } from "../../context/ContactContext/ContactContext";
 
+import { Modal } from "../../components/Modal/Modal";
+import { InputField } from "../../components/InputField/InputField";
+import { StyledButton } from "../../styles/Button";
+
 export const Contacts = () => {
-    const {contacts} = useContext(ContactContext);
+    const {contacts, editContactModal} = useContext(ContactContext);
 
     return(
         <>
+            {
+                editContactModal &&
+                <Modal title="Editar contato">
+                    <form>
+                        <InputField placeholder="nome"/>
+                        <InputField placeholder="email"/>
+                        <InputField placeholder="telefone"/>
+                        <StyledButton>Editar</StyledButton>
+                    </form>
+                </Modal>   
+            }
             <Header/>
             <main>
                 <StyledContainer>

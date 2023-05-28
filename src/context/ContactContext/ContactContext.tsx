@@ -12,6 +12,9 @@ const ContactProvider = ({children}: iContactProviderProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [contacts, setContacts] = useState<iContact[]>([]);
 
+  const [editContactModal, setEditContactModal] = useState<boolean>(false);
+  const [editContactId, setEditContactId] = useState<number | null>(null);
+
   const token = localStorage.getItem("@contact-book: accessToken");
   const userId = localStorage.getItem("@contact-book: userId");
 
@@ -77,7 +80,7 @@ const ContactProvider = ({children}: iContactProviderProps) => {
   }
   
   return(
-      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts, setContacts, deleteContact}}>
+      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts, setContacts, deleteContact, editContactModal, setEditContactModal, editContactId, setEditContactId}}>
           {children}
       </ContactContext.Provider>
   )

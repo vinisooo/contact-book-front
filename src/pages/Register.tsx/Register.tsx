@@ -23,7 +23,6 @@ export const Register = () => {
 
     const onSubmit = (data: any) => {
         registerUser(data);
-        reset();
     }
 
     return(
