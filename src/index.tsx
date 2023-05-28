@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, BrowserRouter, Router } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, BrowserRouter, Router, Route } from "react-router-dom";
 import { GlobalStyles } from './styles/GlobalStyles';
 
 import { Register } from './pages/Register.tsx/Register';
-import { RequestStatus } from './components/RequestStatus/RequestStatus';
-
-import { ContextProvider } from './context';
+import { Login } from './pages/Login/Login';
+import { Contacts } from './pages/Contacts/Contacts';
+import { App } from "./App";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,17 +14,28 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
   {
-    path:"/register",
-    element: <Register/>
+    path:"/",
+    element: <App/>,
+    children: [
+      {
+        path:"/register",
+        element: <Register/>
+      },
+      {
+        path: "/login",
+        element:<Login/>
+      },
+      {
+        path: "/contacts",
+        element: <Contacts/>
+      }
+    ]
   }
 ]);
 
 root.render(
   <React.StrictMode>
-    <ContextProvider>
       <RouterProvider router={router}/>
       <GlobalStyles/>
-      <RequestStatus/>
-    </ContextProvider>
   </React.StrictMode>
 );

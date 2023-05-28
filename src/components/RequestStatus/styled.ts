@@ -36,6 +36,7 @@ export const StyledRequestStatus = styled.figure<iStyledRequestStatusProps>`
         color: var(--color-red);
         margin-left: 20px;
 
+        min-width: 150px;
         font-weight: 600;
     }
 

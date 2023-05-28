@@ -24,7 +24,7 @@ export const RequestStatus = () => {
                 status == "error" &&
                 <>
                     <img src="https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png" alt="success" />
-                    <p>Este email já está cadastrado</p>
+                    <p>{errorMessage}</p>
                 </>
             }
         </StyledRequestStatus>

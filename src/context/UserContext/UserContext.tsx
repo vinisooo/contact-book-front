@@ -2,9 +2,13 @@ import { createContext } from "react";
 import { iUserProviderProps } from "./interfaces";
 import { iUserContextProps } from "./interfaces";
 import { iUserReq } from "../../interfaces/user.interfaces";
+
+
 import { api } from "../../services/api";
 import {useState} from "react";
 
+import { iUserLogin } from "../../interfaces/user.interfaces";
+import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext({} as iUserContextProps)
 
@@ -12,6 +16,8 @@ const UserProvider = ({children}: iUserProviderProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [status, setStatus] = useState<"none" | "success" | "error">("none");
     const [errorMessage, setErrorMessage] = useState<string>("");
+
+    const navigate = useNavigate();
 
     const disableStatus = () => {
         setIsLoading(false);
@@ -37,8 +43,27 @@ const UserProvider = ({children}: iUserProviderProps) => {
         }
     }
 
+    const login = async(data: iUserLogin) => {
+        setIsLoading(true);
+        try{
+            const request = await api.post("/users/login", data);
+            setIsLoading(false);
+            setStatus("success");
+
+            localStorage.setItem("@contact-book: accessToken", request.data.accessToken);
+
+            navigate("/contacts")
+        }catch(err: unknown){
+            console.log(err);
+            setStatus("error");
+            setErrorMessage("Email ou senha inválidos");
+        }finally{
+            disableStatus();
+        }
+    }
+
     return(
-        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage}}>
+        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage, login}}>
             {children}
         </UserContext.Provider>
     )

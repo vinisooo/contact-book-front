@@ -1,4 +1,4 @@
-import { iUserReq } from "../../interfaces/user.interfaces"
+import { iUserLogin, iUserReq } from "../../interfaces/user.interfaces"
 
 interface iUserContextProps {
     registerUser: (data: iUserReq) => void;
@@ -8,6 +8,7 @@ interface iUserContextProps {
     setStatus: React.Dispatch<React.SetStateAction<"none" | "success" | "error">>;
     errorMessage: string;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+    login: (data: iUserLogin) => void;
 }
 
 interface iUserProviderProps{

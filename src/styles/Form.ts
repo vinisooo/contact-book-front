@@ -34,4 +34,16 @@ export const StyledForm = styled.div`
         gap: 23px;
     }
 
+    a{
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--color-grey-1);
+        
+        transition: 0.3s ease;
+        margin-top: 23px;
+    }
+
+    a:hover{
+        color: var(--color-grey-3)
+    }
 `

@@ -1,4 +1,7 @@
-import { userReqSerializer } from "../serializers/user.serializer";
+import { userReqSerializer, userLoginSerializer } from "../serializers/user.serializer";
 import { z } from "zod";
 
-export type iUserReq = z.infer<typeof userReqSerializer>;
+type iUserReq = z.infer<typeof userReqSerializer>;
+type iUserLogin = z.infer<typeof userLoginSerializer>;
+
+export type {iUserReq, iUserLogin}
