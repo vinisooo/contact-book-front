@@ -42,7 +42,7 @@ const AuthProvider = ({children}: iAuthProviderProps) => {
 
     useEffect(() => {
         getLoggedUser(Number(userId), token);
-    })
+    },[]);
 
     return(
         <AuthContext.Provider value={{user, setUser}}>

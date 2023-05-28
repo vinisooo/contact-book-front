@@ -31,28 +31,40 @@ export const StyledHeader = styled.header`
         }
     }
     
-    button{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .popup-menu{
 
-        background-color: transparent;
+        position: relative;
 
-        border: none;
-        font-size: 32px;
-        font-weight: 800;
+        >div{
+            position:absolute;
+            bottom: -120px;
+            right: -50px;
+        }
 
-        border-radius: 50%;
-
-        transform: translateY(-8px);
-
-        color: var(--color-grey-1);
-
-        transition: 0.3s ease;
-
-        :hover{
-            color: var(--color-grey-2);
+        > button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+            background-color: transparent;
+    
+            border: none;
+            font-size: 32px;
+            font-weight: 800;
+    
+            border-radius: 50%;
+    
+            transform: translateY(-8px);
+    
+            color: var(--color-grey-1);
+    
+            transition: 0.3s ease;
+    
+            :hover{
+                color: var(--color-grey-2);
+            }
         }
     }
+
 
 `
