@@ -6,21 +6,16 @@ import { iUserReq } from "../../interfaces/user.interfaces";
 import { api } from "../../services/api";
 import {useState} from "react";
 
-import { iUserLogin } from "../../interfaces/user.interfaces";
 import { useNavigate } from "react-router-dom";
-
-import jwtDecode from "jwt-decode";
 
 const UserContext = createContext({} as iUserContextProps)
 
 const UserProvider = ({children}: iUserProviderProps) => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [status, setStatus] = useState<"none" | "success" | "error">("none");
     const [errorMessage, setErrorMessage] = useState<string>("");
-
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    
     const navigate = useNavigate();
-
-    const { default: jwt_decode } = require("jwt-decode");
 
     const disableStatus = () => {
         setIsLoading(false);
@@ -46,31 +41,8 @@ const UserProvider = ({children}: iUserProviderProps) => {
         }
     }
 
-    const login = async(data: iUserLogin) => {
-        setIsLoading(true);
-        try{
-            const request = await api.post("/users/login", data);
-            setIsLoading(false);
-            setStatus("success");
-
-            localStorage.setItem("@contact-book: accessToken", request.data.accessToken);
-            
-            const decodedJwt: any = jwtDecode(request.data.accessToken);
-
-            localStorage.setItem("@contact-book: userId", decodedJwt.sub);
-
-            navigate("/contacts");
-        }catch(err: unknown){
-            console.log(err);
-            setStatus("error");
-            setErrorMessage("Email ou senha inválidos");
-        }finally{
-            disableStatus();
-        }
-    }
-
     return(
-        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage, login}}>
+        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage, disableStatus}}>
             {children}
         </UserContext.Provider>
     )

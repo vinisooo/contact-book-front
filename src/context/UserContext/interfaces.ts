@@ -8,7 +8,7 @@ interface iUserContextProps {
     setStatus: React.Dispatch<React.SetStateAction<"none" | "success" | "error">>;
     errorMessage: string;
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
-    login: (data: iUserLogin) => void;
+    disableStatus: () => void;
 }
 
 interface iUserProviderProps{

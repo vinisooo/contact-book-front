@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { userLoginSerializer } from "../../serializers/user.serializer";
 
 import { useContext } from "react";
-import { UserContext } from "../../context/UserContext/UserContext";
+import { AuthContext } from "../../context/AuthContext/AuthContext";
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 
 
 export const Login = () => {
-    const { login } = useContext(UserContext);
+    const { login } = useContext(AuthContext);
 
     const {register, handleSubmit, formState:{errors}} = useForm({
         resolver: zodResolver(userLoginSerializer)
