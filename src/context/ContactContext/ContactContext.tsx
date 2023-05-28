@@ -62,9 +62,22 @@ const ContactProvider = ({children}: iContactProviderProps) => {
       console.log(err);
     }
   }
+
+  const deleteContact = async(contactId: number) => {
+    try{
+      const request = await api.delete(`/contacts/${contactId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      getContacts();
+    }catch(err){
+      console.log(err);
+    }
+  }
   
   return(
-      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts, setContacts}}>
+      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts, setContacts, deleteContact}}>
           {children}
       </ContactContext.Provider>
   )

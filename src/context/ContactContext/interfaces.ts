@@ -13,6 +13,7 @@ interface iContactContextProps {
     setContacts: React.Dispatch<React.SetStateAction<iContact[]>>
     handlePhoneNumberChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     createContact: (data: iContactReq) => Promise<void>;
+    deleteContact: (contactId: number) => Promise<void>;
 }
 
 export type {iContactProviderProps, iContactContextProps}

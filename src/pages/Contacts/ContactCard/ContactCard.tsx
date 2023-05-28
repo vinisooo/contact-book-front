@@ -2,7 +2,10 @@ import { UserIcon } from "../../../components/UserIcon/UserIcon";
 import { iContact } from "../../../interfaces/contact.interfaces";
 import { StyledContactCard } from "./styled";
 import { PopupMenu } from "../../../components/PopupMenu/PopupMenu";
-import { useState, useEffect, useRef } from "react";
+
+import { useState, useEffect, useRef, useContext } from "react";
+import { ContactContext } from "../../../context/ContactContext/ContactContext";
+
 
 const copyToClipboard = (content: string) => {
     const textField = document.createElement('textarea');
@@ -20,6 +23,8 @@ interface iContactCardProps{
 export const ContactCard = ({contact}: iContactCardProps) => {
     const [displayPopupMenu, setDisplayPopupMenu] = useState<boolean>(false);
     const [deleteCounter, setDeleteCounter] = useState<number>(1);
+
+    const {deleteContact} = useContext(ContactContext);
 
     const popupMenuRef = useRef<HTMLDivElement>(null);
 
@@ -49,9 +54,11 @@ export const ContactCard = ({contact}: iContactCardProps) => {
     const handleDeleteContact=() => {
         if(deleteCounter == 1){
             setDeleteCounter(deleteCounter + 1);
+        }else{
+            deleteContact(contact.id);
         }
     }
-    console.log(deleteCounter);
+    
     return(
         <StyledContactCard>
             <header>
