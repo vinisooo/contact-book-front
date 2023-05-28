@@ -18,6 +18,8 @@ const ContactProvider = ({children}: iContactProviderProps) => {
   const token = localStorage.getItem("@contact-book: accessToken");
   const userId = localStorage.getItem("@contact-book: userId");
 
+  console.log(editContactModal);
+
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let formattedNumber = e.target.value;
 

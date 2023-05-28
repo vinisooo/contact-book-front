@@ -3,31 +3,19 @@ import { StyledContainer } from "../../styles/Container";
 import { AddContact } from "./components/AddContact/AddContact";
 
 import { StyledContactList } from "./styled";
-import { ContactCard } from "./ContactCard/ContactCard";
+import { ContactCard } from "./components/ContactCard/ContactCard";
 
 import { useContext } from "react";
 import { ContactContext } from "../../context/ContactContext/ContactContext";
 
-import { Modal } from "../../components/Modal/Modal";
-import { InputField } from "../../components/InputField/InputField";
-import { StyledButton } from "../../styles/Button";
+import { EditContactModal } from "./components/EditContactModal/EditContactModal";
 
 export const Contacts = () => {
-    const {contacts, editContactModal} = useContext(ContactContext);
+    const {contacts} = useContext(ContactContext);
 
     return(
         <>
-            {
-                editContactModal &&
-                <Modal title="Editar contato">
-                    <form>
-                        <InputField placeholder="nome"/>
-                        <InputField placeholder="email"/>
-                        <InputField placeholder="telefone"/>
-                        <StyledButton>Editar</StyledButton>
-                    </form>
-                </Modal>   
-            }
+            <EditContactModal/>
             <Header/>
             <main>
                 <StyledContainer>

@@ -1,10 +1,10 @@
-import { UserIcon } from "../../../components/UserIcon/UserIcon";
-import { iContact } from "../../../interfaces/contact.interfaces";
+import { UserIcon } from "../../../../components/UserIcon/UserIcon";
+import { iContact } from "../../../../interfaces/contact.interfaces";
 import { StyledContactCard } from "./styled";
-import { PopupMenu } from "../../../components/PopupMenu/PopupMenu";
+import { PopupMenu } from "../../../../components/PopupMenu/PopupMenu";
 
 import { useState, useEffect, useRef, useContext } from "react";
-import { ContactContext } from "../../../context/ContactContext/ContactContext";
+import { ContactContext } from "../../../../context/ContactContext/ContactContext";
 
 
 const copyToClipboard = (content: string) => {
@@ -33,7 +33,7 @@ export const ContactCard = ({contact}: iContactCardProps) => {
     };
 
     const handleCopyPhone = () => {
-    copyToClipboard(contact.phone);
+        copyToClipboard(contact.phone);
     };
 
     useEffect(() => {
@@ -51,7 +51,10 @@ export const ContactCard = ({contact}: iContactCardProps) => {
     }, []);
 
     const editContactEnableModal = () => {
-        setEditContactModal(true);
+        setDisplayPopupMenu(false);
+        setTimeout(() => {
+            setEditContactModal(true);
+        }, 100)
         setEditContactId(contact.id);
     }
 
