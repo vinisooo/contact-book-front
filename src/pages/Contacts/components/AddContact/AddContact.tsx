@@ -36,7 +36,7 @@ export const AddContact = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <InputField errors={errors.name?.message} register={register("name")} placeholder="nome"/>
                     <InputField errors={errors.email?.message} register={register("email")} placeholder="email"/>
-                    <InputField onChange={handlePhoneNumberChange} value={phoneNumber} errors={errors.phone?.message} register={register("phone")} placeholder="telefone"/>
+                    <InputField maxLength={16} onChange={handlePhoneNumberChange} value={phoneNumber} errors={errors.phone?.message} register={register("phone")} placeholder="telefone"/>
                     <StyledButton type="submit">Adicionar</StyledButton>
                 </form>
             }

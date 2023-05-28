@@ -8,6 +8,9 @@ export const StyledHeader = styled.header`
     background-color: var(--total-white);
     box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.15);
 
+    position: fixed;
+    top: 0;
+
     > div{
         margin: 0 auto;
         width: 100%;

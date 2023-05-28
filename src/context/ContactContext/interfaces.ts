@@ -1,4 +1,5 @@
 import { iContactReq } from "../../interfaces/contact.interfaces";
+import { iContact } from "../../interfaces/contact.interfaces";
 
 interface iContactProviderProps{
     children: React.ReactNode
@@ -7,8 +8,9 @@ interface iContactProviderProps{
 interface iContactContextProps {
     phoneNumber: string;
     setPhoneNumber: React.Dispatch<React.SetStateAction<string>>;
+    contacts: iContact[];
     handlePhoneNumberChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    createContact: (data: iContactReq) => Promise<void>
+    createContact: (data: iContactReq) => Promise<void>;
 }
 
 export type {iContactProviderProps, iContactContextProps}

@@ -1,8 +1,9 @@
 import { StyledPopupMenu } from "./styled"
 
 interface iPopupMenuProps{
-    children?: React.ReactNode
-    display: boolean
+    children?: React.ReactNode;
+    display: boolean;
+    userId?: number;
 }
 
 export const PopupMenu = ({children, display}: iPopupMenuProps) => {

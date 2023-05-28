@@ -4,7 +4,7 @@ export const StyledAddContact = styled.div`
     
     width: 100%;
 
-    margin-top: 50px;
+    margin-top: 150px;
 
     header{
         display: flex;

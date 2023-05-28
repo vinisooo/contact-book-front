@@ -57,14 +57,14 @@ const ContactProvider = ({children}: iContactProviderProps) => {
         }
       });
 
-      console.log(request)
+      getContacts();
     }catch(err){
       console.log(err);
     }
   }
   
   return(
-      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact}}>
+      <ContactContext.Provider value={{phoneNumber, setPhoneNumber, handlePhoneNumberChange, createContact, contacts}}>
           {children}
       </ContactContext.Provider>
   )
