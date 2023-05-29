@@ -8,9 +8,11 @@ import { ContactContext } from "../../../../context/ContactContext/ContactContex
 import {useForm} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactUpdateSerializer } from "../../../../serializers/contact.serializer";
+import { UserContext } from "../../../../context/UserContext/UserContext";
 
-export const EditContactModal = () => {
-    const {editContactModal, handlePhoneNumberChange, phoneNumber, updateContact} = useContext(ContactContext);
+export const EditUserModal = () => {
+    const {handlePhoneNumberChange, phoneNumber} = useContext(ContactContext);
+    const {editUserModal, updateUser} = useContext(UserContext);
 
     const {register, handleSubmit, formState:{errors}, reset} = useForm({
         resolver: zodResolver(contactUpdateSerializer),
@@ -24,16 +26,18 @@ export const EditContactModal = () => {
             delete data.email;
         }if(data.phone == ""){
             delete data.phone;
+        }if(data.password == ""){
+            delete data.phone;
         }
-        updateContact(data);
+        updateUser(data);
         reset();
     }
 
-    if(!editContactModal){
+    if(!editUserModal){
         return <></>
     }
     return(
-        <Modal title="Editar contato">
+        <Modal title="Editar perfil">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputField required={false} errors={errors.name?.message} register={register("name")} placeholder="nome"/>
                 <InputField required={false} type="email" errors={errors.email?.message} register={register("email")} placeholder="email"/>

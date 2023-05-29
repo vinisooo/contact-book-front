@@ -16,7 +16,7 @@ export const InputField = ({type, placeholder, errors, onChange, register, value
 
     return(
         <StyledInputField>
-            <input value={value} maxLength={maxLength} className={errors ? "unvalid" : ""} {...register} onChange={onChange} required={required ? false : true} id={placeholder} type={type}/>
+            <input value={value} maxLength={maxLength} className={errors ? "unvalid" : ""} {...register} onChange={onChange} required={required} id={placeholder} type={type}/>
             <label htmlFor={placeholder}>{placeholder}</label>
             {errors && <span>{errors}</span>}
         </StyledInputField>

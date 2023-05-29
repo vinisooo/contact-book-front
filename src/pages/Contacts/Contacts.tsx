@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { ContactContext } from "../../context/ContactContext/ContactContext";
 
 import { EditContactModal } from "./components/EditContactModal/EditContactModal";
+import { EditUserModal } from "./components/EditUserModal/EditUserModal";
 
 export const Contacts = () => {
     const {contacts} = useContext(ContactContext);
@@ -16,6 +17,7 @@ export const Contacts = () => {
     return(
         <>
             <EditContactModal/>
+            <EditUserModal/>
             <Header/>
             <main>
                 <StyledContainer>

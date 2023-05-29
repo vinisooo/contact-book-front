@@ -91,7 +91,7 @@ const ContactProvider = ({children}: iContactProviderProps) => {
 
       getContacts();
       setEditContactId(null)
-      setEditContactModal(false);
+      setEditContactModal(false)
     }catch(err){
       console.log(err);
     }

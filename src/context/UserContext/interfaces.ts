@@ -1,4 +1,4 @@
-import { iUser, iUserLogin, iUserReq } from "../../interfaces/user.interfaces"
+import { iUser, iUserLogin, iUserReq, iUserUpdate } from "../../interfaces/user.interfaces"
 
 interface iUserContextProps {
     registerUser: (data: iUserReq) => void;
@@ -10,6 +10,9 @@ interface iUserContextProps {
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
     disableStatus: () => void;
     deleteUser: () => Promise<void>;
+    editUserModal: boolean;
+    setEditUserModal: React.Dispatch<React.SetStateAction<boolean>>;
+    updateUser: (data: iUserUpdate) => Promise<void>;
 }
 
 interface iUserProviderProps{

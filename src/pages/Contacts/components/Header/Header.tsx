@@ -12,8 +12,16 @@ import { UserContext } from "../../../../context/UserContext/UserContext";
 
 export const Header = () => {
     const {user} = useContext(AuthContext);
+    const {setEditUserModal, updateUser} = useContext(UserContext);
     const [displayPopupMenu, setDisplayPopupMenu] = useState<boolean>(false);
     const [deleteCounter, setDeleteCounter] = useState<number>(1);
+
+    const editUserEnableModal = () => {
+        setDisplayPopupMenu(false);
+        setTimeout(() => {
+            setEditUserModal(true);
+        }, 100)
+    }
 
     const {deleteUser} = useContext(UserContext);
     const {setUser} = useContext(AuthContext);
@@ -66,7 +74,7 @@ export const Header = () => {
                 <div ref={popupMenuRef} className="popup-menu">
                     <button onClick={() => setDisplayPopupMenu(!displayPopupMenu)}>...</button>
                     <PopupMenu  display={displayPopupMenu}>
-                        <button>Editar</button>
+                        <button onClick={editUserEnableModal}>Editar</button>
                         <button onClick={logOut} className="red">Sair</button>
                         <button onClick={handleDeleteContact} className={deleteCounter == 2? "red-delete": "red"}>{ deleteCounter === 2 ? "Confirmar" : "Excluir Conta"}</button>
                     </PopupMenu>

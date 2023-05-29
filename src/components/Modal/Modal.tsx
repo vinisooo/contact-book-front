@@ -1,4 +1,5 @@
 import { ContactContext } from "../../context/ContactContext/ContactContext";
+import { UserContext } from "../../context/UserContext/UserContext";
 import { StyledModal } from "./styled";
 
 import { useContext, useEffect, useRef } from "react";
@@ -10,6 +11,7 @@ interface iModalProps{
 
 export const Modal = ({children, title}: iModalProps) => {
     const {setEditContactModal, setEditContactId} = useContext(ContactContext);
+    const {setEditUserModal} = useContext(UserContext);
 
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -17,6 +19,7 @@ export const Modal = ({children, title}: iModalProps) => {
         const handleClickOutside = (event: MouseEvent) => {
             if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
                 setEditContactModal(false);
+                setEditUserModal(false);
                 setEditContactId(null);
             }
         };

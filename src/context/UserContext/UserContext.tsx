@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { iUserProviderProps } from "./interfaces";
 import { iUserContextProps } from "./interfaces";
-import { iUserReq } from "../../interfaces/user.interfaces";
+import { iUserReq, iUserUpdate } from "../../interfaces/user.interfaces";
 
 import { api } from "../../services/api";
 import {useState} from "react";
@@ -14,6 +14,8 @@ const UserProvider = ({children}: iUserProviderProps) => {
     const [status, setStatus] = useState<"none" | "success" | "error">("none");
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const [editUserModal, setEditUserModal] = useState<boolean>(false);
     
     const navigate = useNavigate();
 
@@ -58,13 +60,27 @@ const UserProvider = ({children}: iUserProviderProps) => {
             navigate("/login");
             localStorage.removeItem("@contact-book: accessToken");
             localStorage.removeItem("@contact-book: userId");
-        }catch(err){
+        }catch(err:unknown){
+            console.log(err);
+        }
+    }
+
+    const updateUser = async(data: iUserUpdate) => {
+        try{
+            const request = await api.patch(`/users/${userId}`, data, {
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            
+            window.location.reload();
+        }catch(err:unknown){
             console.log(err);
         }
     }
 
     return(
-        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage, disableStatus, deleteUser}}>
+        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage, disableStatus, deleteUser, editUserModal, setEditUserModal, updateUser}}>
             {children}
         </UserContext.Provider>
     )

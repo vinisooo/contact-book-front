@@ -14,6 +14,10 @@ const noUserContactSerializer = contactSerializer.omit({user: true});
 
 const contactReqSerializer = noUserContactSerializer.omit({id: true, createdAt: true});
 
-const contactUpdateSerializer = contactReqSerializer.partial();
+const contactUpdateSerializer = z.object({
+    name: z.string().max(123),
+    email: z.string().max(123),
+    phone: z.string().max(20)
+});
 
 export { phoneRegex, contactSerializer, noUserContactSerializer, contactReqSerializer, contactUpdateSerializer };
