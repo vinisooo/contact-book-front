@@ -78,7 +78,8 @@ const UserProvider = ({children}: iUserProviderProps) => {
     }
 
     return(
-        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage, setErrorMessage, disableStatus, deleteUser, editUserModal, setEditUserModal, updateUser}}>
+        <UserContext.Provider value={{registerUser, isLoading, setIsLoading, status, setStatus, errorMessage,
+                setErrorMessage, disableStatus, deleteUser, editUserModal, setEditUserModal, updateUser}}>
             {children}
         </UserContext.Provider>
     )

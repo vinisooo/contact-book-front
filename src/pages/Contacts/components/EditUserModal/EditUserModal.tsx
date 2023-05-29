@@ -41,7 +41,7 @@ export const EditUserModal = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputField required={false} errors={errors.name?.message} register={register("name")} placeholder="nome"/>
                 <InputField required={false} type="email" errors={errors.email?.message} register={register("email")} placeholder="email"/>
-                <InputField required={false} errors={errors.phone?.message} maxLength={16} value={phoneNumber} onChange={handlePhoneNumberChange} register={register("phone")} placeholder="telefone"/>
+                <InputField required={false} errors={errors.phone?.message} maxLength={16} value={phoneNumber}onChange={handlePhoneNumberChange} register={register("phone")} placeholder="telefone"/>
                 <StyledButton type="submit">Editar</StyledButton>
             </form>
         </Modal>   
