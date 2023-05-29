@@ -23,7 +23,6 @@ export const Login = () => {
 
     const onSubmit = (data: any) => {
         login(data);
-        reset();
     }
 
     return(

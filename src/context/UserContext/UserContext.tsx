@@ -39,10 +39,8 @@ const UserProvider = ({children}: iUserProviderProps) => {
             navigate("/login");
         }catch(err: any){
             console.log(err);
-            if(err.response.detail){
-                if(err.response.detail === "Email already exists"){
-                    setErrorMessage("Este email já está cadastrado");
-                }
+            if(err.response.detail === "Email already exists"){
+                setErrorMessage("Este email já está cadastrado");
             }
             setStatus("error");
         }finally{
