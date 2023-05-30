@@ -32,11 +32,11 @@ export const Register = () => {
                     <h1>Cadastro</h1>
                 </header>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <InputField errors={errors.name?.message} register={register("name")} placeholder="nome"/>
-                    <InputField errors={errors.email?.message} register={register("email")} placeholder="email"/>
-                    <InputField type="password" errors={errors.password?.message} register={register("password")} placeholder="senha"/>
-                    <InputField type="password" errors={errors.confirmPassword?.message} register={register("confirmPassword")} placeholder="confirmar senha"/>
-                    <InputField maxLength={16} onChange={handlePhoneNumberChange} value={phoneNumber} errors={errors.phone?.message} register={register("phone")} placeholder="telefone"/>
+                    <InputField required={true} errors={errors.name?.message} register={register("name")} placeholder="nome"/>
+                    <InputField required={true} errors={errors.email?.message} register={register("email")} placeholder="email"/>
+                    <InputField required={true} type="password" errors={errors.password?.message} register={register("password")} placeholder="senha"/>
+                    <InputField required={true} type="password" errors={errors.confirmPassword?.message} register={register("confirmPassword")} placeholder="confirmar senha"/>
+                    <InputField required={true} maxLength={16} onChange={handlePhoneNumberChange} value={phoneNumber} errors={errors.phone?.message} register={register("phone")} placeholder="telefone"/>
                     <StyledButton>Cadastrar</StyledButton>
                 </form>
                 <Link to="/login">Já tenho uma conta</Link>

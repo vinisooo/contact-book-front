@@ -32,8 +32,8 @@ export const Login = () => {
                     <h1>Entrar</h1>
                 </header>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <InputField errors={errors.email?.message} register={register("email")} placeholder="email"/>
-                    <InputField type="password" errors={errors.password?.message} register={register("password")} placeholder="senha"/>
+                    <InputField required={true} errors={errors.email?.message} register={register("email")} placeholder="email"/>
+                    <InputField required={true} type="password" errors={errors.password?.message} register={register("password")} placeholder="senha"/>
                     <StyledButton>Entrar</StyledButton>
                 </form>
                 <Link to="/register">Não tenho uma conta</Link>
