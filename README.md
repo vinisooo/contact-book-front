@@ -5,6 +5,8 @@
 
 <h2>Funcionalidades</h2>
 <ul>
+  <li>Criar uma conta</li>
+  <li>Logar em uma conta</li>
   <li>Adicionar um novo contato: insira as informações do contato, como nome, telefone e email, e clique em "Adicionar".</li>
   <li>Visualizar contatos existentes: todos os contatos adicionados serão exibidos em uma lista para fácil visualização.</li>
   <li>Editar contatos: clique no botão de edição ao lado do contato desejado para modificar suas informações.</li>
