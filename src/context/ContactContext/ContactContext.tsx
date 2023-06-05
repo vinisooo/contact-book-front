@@ -89,6 +89,7 @@ const ContactProvider = ({children}: iContactProviderProps) => {
         }
       })
 
+      setPhoneNumber("");
       getContacts();
       setEditContactId(null)
       setEditContactModal(false)

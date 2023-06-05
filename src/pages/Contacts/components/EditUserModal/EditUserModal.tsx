@@ -11,7 +11,7 @@ import { contactUpdateSerializer } from "../../../../serializers/contact.seriali
 import { UserContext } from "../../../../context/UserContext/UserContext";
 
 export const EditUserModal = () => {
-    const {handlePhoneNumberChange, phoneNumber} = useContext(ContactContext);
+    const {handlePhoneNumberChange, phoneNumber, setPhoneNumber} = useContext(ContactContext);
     const {editUserModal, updateUser} = useContext(UserContext);
 
     const {register, handleSubmit, formState:{errors}, reset} = useForm({
@@ -29,6 +29,7 @@ export const EditUserModal = () => {
         }if(data.password == ""){
             delete data.phone;
         }
+        setPhoneNumber("");
         updateUser(data);
         reset();
     }
