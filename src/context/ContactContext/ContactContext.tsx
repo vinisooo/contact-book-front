@@ -61,7 +61,7 @@ const ContactProvider = ({children}: iContactProviderProps) => {
           Authorization: `Bearer ${token}`
         }
       });
-
+      setPhoneNumber("");
       getContacts();
     }catch(err){
       console.log(err);

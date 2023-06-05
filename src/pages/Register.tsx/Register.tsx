@@ -13,7 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from "react-router-dom";
 
 export const Register = () => {
-    const { phoneNumber, handlePhoneNumberChange } = useContext(ContactContext);
+    const { phoneNumber, setPhoneNumber,handlePhoneNumberChange } = useContext(ContactContext);
     const { registerUser } = useContext(UserContext);
 
     const {register, handleSubmit, formState:{errors}, reset} = useForm({
@@ -23,6 +23,7 @@ export const Register = () => {
 
     const onSubmit = (data: any) => {
         registerUser(data);
+        setPhoneNumber("");
     }
 
     return(
